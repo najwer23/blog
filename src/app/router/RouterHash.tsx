@@ -1,3 +1,4 @@
+import { Layout } from '@app/layout/Layout';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import { Home } from '../pages/home/Home';
 import { ScrollToTop } from './ScrollToTop';
@@ -8,10 +9,20 @@ export const router = createHashRouter([
     element: (
       <>
         <ScrollToTop />
-        <Home />
+        <Layout />
         {/* <ScrollRestoration /> */}
       </>
     ),
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: '/home',
+        element: <Home />,
+      },
+    ],
   },
 ]);
 

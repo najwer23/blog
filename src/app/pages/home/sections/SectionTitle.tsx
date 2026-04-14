@@ -1,10 +1,10 @@
 import { TextBox } from 'najwer23morsels/lib/textbox';
 import { useLocation, useNavigate } from 'react-router-dom';
-import type { BlogPostSection } from '../post/Post.types';
+import type { PostSection } from '../post/Post.types';
 
 export const SectionTitle: React.FC<{
   id: number;
-  section: Extract<BlogPostSection, { name: 'post-title' }>;
+  section: Extract<PostSection, { name: 'post-title' }>;
 }> = ({ section, id }) => {
   const navigate = useNavigate();
   const location = useLocation();

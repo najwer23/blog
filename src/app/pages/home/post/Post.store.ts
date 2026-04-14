@@ -1,6 +1,6 @@
 import { createSelectors } from '@app/store/createSelectors';
 import { create } from 'zustand';
-import type { PostJson } from './Post.types';
+import type { PostJson, PostSection, PostSectionData } from './Post.types';
 
 type PostStore = {
   postJson: PostJson;
@@ -11,6 +11,8 @@ type PostStore = {
   closeSectionIdDialog: () => void;
   addTitleSection: () => void;
   removeSection: (index: number) => void;
+  updateSection: (updatedSection: PostJson['sections'][number]) => void;
+  updateSectionData: <K extends PostSection['name']>(index: number, name: K, data: PostSectionData<K>) => void;
 };
 
 const usePostStoreBase = create<PostStore>()((set) => ({
@@ -43,7 +45,7 @@ const usePostStoreBase = create<PostStore>()((set) => ({
           {
             name: 'post-title',
             data: {
-              title: '#1 My first post post',
+              title: '#',
               date: '29/03/2026',
             },
           },
@@ -55,6 +57,24 @@ const usePostStoreBase = create<PostStore>()((set) => ({
       postJson: {
         ...state.postJson,
         sections: state.postJson.sections.filter((_, i) => i !== index),
+      },
+    })),
+  updateSection: (updatedSection) =>
+    set((state) => ({
+      postJson: {
+        ...state.postJson,
+        sections: state.postJson.sections.map((section, index) =>
+          index === state.sectionId ? updatedSection : section,
+        ),
+      },
+    })),
+  updateSectionData: <K extends PostSection['name']>(index: number, name: K, data: PostSectionData<K>) =>
+    set((state) => ({
+      postJson: {
+        ...state.postJson,
+        sections: state.postJson.sections.map((section, i) =>
+          i === index && section.name === name ? ({ ...section, data } as PostSection) : section,
+        ),
       },
     })),
 }));

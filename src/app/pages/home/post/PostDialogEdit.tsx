@@ -1,14 +1,128 @@
+import { Button } from 'najwer23morsels/lib/button';
+import { Calendar } from 'najwer23morsels/lib/calendar';
 import { Dialog } from 'najwer23morsels/lib/dialog';
+import { Form } from 'najwer23morsels/lib/form';
+import type { FormType } from 'najwer23morsels/lib/form/Form';
+import { Grid } from 'najwer23morsels/lib/grid';
+import { Input } from 'najwer23morsels/lib/input';
+import { TextBox } from 'najwer23morsels/lib/textbox';
 import { usePostStore } from './Post.store';
 
 export const BlogDialogEdit: React.FC<{}> = () => {
   const sectionId = usePostStore.use.sectionId();
   const sectionIdDialogOpen = usePostStore.use.sectionIdDialogOpen();
   const closeSectionIdDialog = usePostStore.use.closeSectionIdDialog();
+  const updateSectionData = usePostStore.use.updateSectionData();
+  const postJson = usePostStore.use.postJson();
+
+  const section = postJson.sections[sectionId];
+
+  const handleOnSubmit = (form: FormType) => {
+    if (Object.values(form).some(({ error }) => error)) return;
+
+    switch (section.name) {
+      case 'post-title': {
+        const data = {
+          title: form.title.value,
+          date: form.date.value.split('-').reverse().join('/'),
+        };
+        updateSectionData(sectionId, section.name, data);
+        break;
+      }
+
+      case 'post-p': {
+        const data = {
+          text: form.text.value,
+        };
+        updateSectionData(sectionId, section.name, data);
+        break;
+      }
+
+      case 'post-subheading': {
+        const data = {
+          text: form.text.value,
+        };
+        updateSectionData(sectionId, section.name, data);
+        break;
+      }
+
+      case 'post-code': {
+        const data = {
+          code: form.code.value,
+        };
+        updateSectionData(sectionId, section.name, data);
+        break;
+      }
+
+      case 'quote': {
+        const data = {
+          text: form.text.value,
+        };
+        updateSectionData(sectionId, section.name, data);
+        break;
+      }
+
+      case 'group':
+        return;
+    }
+
+    closeSectionIdDialog();
+  };
+
   return (
     <>
-      <Dialog maxWidth={'900px'} open={sectionIdDialogOpen} onCancel={() => closeSectionIdDialog()}>
-        Halo {sectionId}
+      <Dialog widthMax={'900px'} open={sectionIdDialogOpen} onCancel={() => closeSectionIdDialog()}>
+        <Grid layout="container" padding="0px 30px 30px 30px" margin="auto" widthMax={'900px'} widthMin={'800px'}>
+          <TextBox mobileSize={20} desktopSize={20} margin={'0 0 30px'} tag="h3" fontWeight={700}>
+            Editing section {sectionId}
+          </TextBox>
+
+          <Form
+            onSubmit={handleOnSubmit}
+            isError={false}
+            isPending={false}
+            isSuccess={false}
+            errorMsg={undefined}
+            successMsg={undefined}
+          >
+            {section?.name === 'post-title' && (
+              <>
+                <Input
+                  label="Title"
+                  type="text"
+                  name="title"
+                  defaultValue={section?.data.title}
+                  validatorOptions={[{ type: 'empty' }]}
+                  placeholder="Post Title"
+                />
+
+                <Calendar label="Date" name="date" defaultValue={section?.data.date} placeholder="Post Date" />
+              </>
+            )}
+
+            <Grid
+              layout="flex"
+              widthMax={'100%'}
+              padding={'0'}
+              justifyContent="flex-end"
+              alignItems="right"
+              margin={'30px 0 0 0'}
+            >
+              <Button
+                type="submit"
+                height={'40px'}
+                width={'80px'}
+                padding={0}
+                backgroundColor="green"
+                backgroundColorDisabled="grey"
+              >
+                <TextBox tag="span" desktopSize={16} mobileSize={16} fontWeight={400} color="white">
+                  Save
+                </TextBox>
+              </Button>
+            </Grid>
+          </Form>
+        </Grid>
       </Dialog>
     </>
   );

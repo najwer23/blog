@@ -65,7 +65,7 @@ export const BlogDialogEdit: React.FC<{}> = () => {
   return (
     <>
       <Dialog widthMax={'900px'} open={sectionIdDialogOpen} onCancel={() => closeSectionIdDialog()}>
-        <Grid layout="container" padding="0px 30px 30px 30px" margin="auto" widthMin={'min(800px, 100vw)'}>
+        <Grid layout="container" padding="0px 30px 30px 30px" margin="auto" widthMin={'min(800px, calc(100vw - 25px))'}>
           <TextBox mobileSize={20} desktopSize={20} margin={'0 0 30px'} tag="h3" fontWeight={700}>
             Editing section {sectionId}
           </TextBox>

@@ -1,18 +1,37 @@
 import { useDocumentTitle } from '@app/hooks/useDocumentTitle';
+import { storageItemGet } from '@app/storage/storageItemGet';
+import { storageItemSet } from '@app/storage/storageItemSet';
 import { Button } from 'najwer23morsels/lib/button';
 import { Grid } from 'najwer23morsels/lib/grid';
 import { TextBox } from 'najwer23morsels/lib/textbox';
+import { useEffect } from 'react';
 import { usePostStore } from './post/Post.store';
 import { BlogDialogEdit } from './post/PostDialogEdit';
 import { PostRenderSection } from './post/PostRenderSection';
+
+const STORAGE_KEY = 'blog-post-creator';
 
 export const Home = () => {
   useDocumentTitle('Home | Mariusz Najwer');
 
   const postJson = usePostStore.use.postJson();
-  const addTitleSection = usePostStore.use.addTitleSection();
+  const setPostJson = usePostStore.use.setPostJson();
+  const addSectionTitle = usePostStore.use.addSectionTitle();
+  const addSectionP = usePostStore.use.addSectionP();
   const removeSection = usePostStore.use.removeSection();
   const openSectionIdDialog = usePostStore.use.openSectionIdDialog();
+
+  useEffect(() => {
+    const stored = storageItemGet(localStorage, STORAGE_KEY);
+    if (stored) {
+      setPostJson(() => stored);
+    }
+  }, [setPostJson]);
+
+  useEffect(() => {
+    if (!postJson) return;
+    storageItemSet(localStorage, STORAGE_KEY, postJson, 999999);
+  }, [postJson]);
 
   return (
     <Grid layout="container" widthMax="1600px" padding="40px 20px 40px 20px" margin="auto">
@@ -24,9 +43,14 @@ export const Home = () => {
             Sections
           </TextBox>
 
-          <Button height="40px" width="100px" backgroundColor="grey" onClick={addTitleSection}>
+          <Button height="40px" width="100px" backgroundColor="orange" onClick={addSectionTitle}>
             <TextBox mobileSize={18} desktopSize={18}>
-              Title
+              Post Title
+            </TextBox>
+          </Button>
+          <Button height="40px" width="120px" backgroundColor="orange" onClick={addSectionP} margin={'20px 0 0'}>
+            <TextBox mobileSize={18} desktopSize={18}>
+              Paragpraph
             </TextBox>
           </Button>
         </Grid>

@@ -100,6 +100,19 @@ export const BlogDialogEdit: React.FC<{}> = () => {
               </>
             )}
 
+            {section?.name === 'post-p' && (
+              <>
+                <Input
+                  kind="textarea"
+                  label="Paragraph"
+                  name="text"
+                  defaultValue={section?.data.text}
+                  validatorOptions={[{ type: 'empty' }]}
+                  placeholder="Place for your paragraph"
+                />
+              </>
+            )}
+
             <Grid
               layout="flex"
               widthMax={'100%'}

@@ -6,10 +6,11 @@ type PostStore = {
   postJson: PostJson;
   sectionId: number;
   sectionIdDialogOpen: boolean;
-  setBlogJson: (updater: (prev: PostJson) => PostJson) => void;
+  setPostJson: (updater: (prev: PostJson) => PostJson) => void;
   openSectionIdDialog: (id: number) => void;
   closeSectionIdDialog: () => void;
-  addTitleSection: () => void;
+  addSectionTitle: () => void;
+  addSectionP: () => void;
   removeSection: (index: number) => void;
   updateSection: (updatedSection: PostJson['sections'][number]) => void;
   updateSectionData: <K extends PostSection['name']>(index: number, name: K, data: PostSectionData<K>) => void;
@@ -23,7 +24,7 @@ const usePostStoreBase = create<PostStore>()((set) => ({
   },
   sectionId: 0,
   sectionIdDialogOpen: false,
-  setBlogJson: (updater) =>
+  setPostJson: (updater) =>
     set((state) => ({
       postJson: updater(state.postJson),
     })),
@@ -36,7 +37,7 @@ const usePostStoreBase = create<PostStore>()((set) => ({
     set({
       sectionIdDialogOpen: false,
     }),
-  addTitleSection: () =>
+  addSectionTitle: () =>
     set((state) => ({
       postJson: {
         ...state.postJson,
@@ -47,6 +48,21 @@ const usePostStoreBase = create<PostStore>()((set) => ({
             data: {
               title: '#',
               date: '29/03/2026',
+            },
+          },
+        ],
+      },
+    })),
+  addSectionP: () =>
+    set((state) => ({
+      postJson: {
+        ...state.postJson,
+        sections: [
+          ...state.postJson.sections,
+          {
+            name: 'post-p',
+            data: {
+              text: 'Example',
             },
           },
         ],

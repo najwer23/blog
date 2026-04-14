@@ -1,6 +1,6 @@
-# Blog
+# Blog Post Creator
 
-**Website:** https://najwer23.github.io/blog
+**Website:** https://najwer23.github.io/blog-post-creator
 
 ### Self Update
 

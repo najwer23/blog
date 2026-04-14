@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/blog/',
+  base: '/blog-post-creator/',
   plugins: [
     react(),
     VitePWA({
@@ -16,8 +16,8 @@ export default defineConfig({
       manifest: {
         name: 'React Starter by Mariusz Najwer',
         short_name: 'React Starter',
-        start_url: '/blog/',
-        scope: '/blog/',
+        start_url: '/blog-post-creator/',
+        scope: '/blog-post-creator/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#000000',

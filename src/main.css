@@ -1,5 +1,9 @@
 :root {
   --surface: #eee;
+  --linkColor: orangered;
+  --linkColorHover: orangered;
+
+  --n23mTextBoxColor: black;
 }
 
 html {
@@ -10,6 +14,11 @@ body {
   background-color: var(--surface);
   margin: 0;
   padding: 0;
+}
+
+.n23mTextBoxLink {
+  --n23mTextBoxColor: var(--linkColor);
+  --n23mTextBoxColorHover: var(--linkColorHover);
 }
 
 @media (max-width: 575.98px) {

@@ -1,7 +1,9 @@
 :root {
+  --surface: #eee;
 }
 
 body {
+  background-color: var(--surface);
   margin: 0;
   padding: 0;
 }

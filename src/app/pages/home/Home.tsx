@@ -1,6 +1,7 @@
 import { useDocumentTitle } from '@app/hooks/useDocumentTitle';
 import { storageItemGet } from '@app/storage/storageItemGet';
 import { storageItemSet } from '@app/storage/storageItemSet';
+import { SyntaxHighlight } from '@app/syntaxhighlight/SyntaxHighlight';
 import { Button } from 'najwer23morsels/lib/button';
 import { Grid } from 'najwer23morsels/lib/grid';
 import { TextBox } from 'najwer23morsels/lib/textbox';
@@ -21,6 +22,7 @@ export const Home = () => {
   const addSectionP = usePostStore.use.addSectionP();
   const removeSection = usePostStore.use.removeSection();
   const openSectionIdDialog = usePostStore.use.openSectionIdDialog();
+  const addSectionCode = usePostStore.use.addSectionCode();
 
   useEffect(() => {
     const stored = storageItemGet(localStorage, STORAGE_KEY);
@@ -38,8 +40,8 @@ export const Home = () => {
     <Grid layout="container" widthMax="1600px" padding="40px 20px 40px 20px" margin="auto">
       <BlogDialogEdit />
 
-      <Grid layout="flex" justifyContent="flex-start" alignItems="flex-start">
-        <Grid layout="container" widthMax="500px" widthMin="500px" margin={0}>
+      <Grid layout="flex" justifyContent="flex-start" alignItems="flex-start" margin={'0 0 100px'}>
+        <Grid layout="container" widthMax="450px" widthMin="450px" margin={0}>
           <TextBox mobileSize={20} desktopSize={20} margin="0 0 40px">
             Sections
           </TextBox>
@@ -52,6 +54,12 @@ export const Home = () => {
           <Button height="40px" width="120px" backgroundColor="orange" onClick={addSectionP} margin={'20px 0 0'}>
             <TextBox mobileSize={18} desktopSize={18}>
               Paragpraph
+            </TextBox>
+          </Button>
+
+          <Button height="40px" width="60px" backgroundColor="orange" onClick={addSectionCode} margin={'20px 0 0'}>
+            <TextBox mobileSize={18} desktopSize={18}>
+              Code
             </TextBox>
           </Button>
 
@@ -68,53 +76,46 @@ export const Home = () => {
           </Button>
         </Grid>
 
-        <Grid layout="container" widthMax="1000px" widthMin="1000px" margin={0}>
+        <Grid layout="container" widthMax="1100px" widthMin="1100px" margin={0}>
           <TextBox mobileSize={20} desktopSize={20} margin="0 0 40px">
             Post
           </TextBox>
 
-          <Grid layout="container">
+          <Grid layout="container" widthMax={'1190px'} margin={0}>
             {postJson.sections.map((section, index) => (
               <Grid
                 key={index}
                 layout="flex"
-                justifyContent="flex-start"
-                alignItems="flex-start"
+                justifyContent="flexstart"
+                alignItems="flexstart"
+                widthMax={'1190px'}
                 gap={{ col: '10px', row: '20px' }}
+                margin={0}
               >
-                <div>
-                  <Grid layout="container">
-                    <TextBox mobileSize={15} desktopSize={15}>
-                      {index} {section.name}
-                    </TextBox>
-                    <Grid
-                      layout="flex"
-                      justifyContent="flex-start"
-                      widthMax="200px"
-                      widthMin="200px"
-                      margin={0}
-                      gap={{ col: '10px', row: '20px' }}
+                <Grid layout="container" widthMin="180px" widthMax={'180px'} margin={0}>
+                  <TextBox mobileSize={15} desktopSize={15}>
+                    {index} {section.name}
+                  </TextBox>
+                  <Grid layout="flex" justifyContent="flex-start" margin={0} gap={{ col: '10px', row: '20px' }}>
+                    <Button
+                      width="50px"
+                      height="30px"
+                      backgroundColor="#4BB543"
+                      onClick={() => openSectionIdDialog(index)}
                     >
-                      <Button
-                        width="50px"
-                        height="30px"
-                        backgroundColor="#4BB543"
-                        onClick={() => openSectionIdDialog(index)}
-                      >
-                        <TextBox mobileSize={15} desktopSize={15} color="white">
-                          Edit
-                        </TextBox>
-                      </Button>
-                      <Button width="50px" height="30px" backgroundColor="#ff3333" onClick={() => removeSection(index)}>
-                        <TextBox mobileSize={15} desktopSize={15} color="white">
-                          Del
-                        </TextBox>
-                      </Button>
-                    </Grid>
+                      <TextBox mobileSize={15} desktopSize={15} color="white">
+                        Edit
+                      </TextBox>
+                    </Button>
+                    <Button width="50px" height="30px" backgroundColor="#ff3333" onClick={() => removeSection(index)}>
+                      <TextBox mobileSize={15} desktopSize={15} color="white">
+                        Del
+                      </TextBox>
+                    </Button>
                   </Grid>
-                </div>
+                </Grid>
 
-                <div>
+                <div style={{ width: '100%' }}>
                   <PostRenderSection section={section} id={1} />
                 </div>
               </Grid>
@@ -123,14 +124,14 @@ export const Home = () => {
         </Grid>
       </Grid>
 
-      <Grid layout="container" widthMax="500px" widthMin="500px" margin="40px 0 0 0">
+      <hr></hr>
+
+      <Grid layout="container" widthMax="1600px" widthMin="500px" margin="40px 0 100px 0">
         <TextBox mobileSize={20} desktopSize={20} margin="0 0 40px">
           JSON
         </TextBox>
 
-        <Grid layout="container" widthMax="1400px">
-          <pre>{JSON.stringify(postJson, null, 2)}</pre>
-        </Grid>
+        <SyntaxHighlight>{JSON.stringify(postJson, null, 2)}</SyntaxHighlight>
       </Grid>
     </Grid>
   );

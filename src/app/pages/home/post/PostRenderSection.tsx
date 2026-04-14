@@ -1,3 +1,4 @@
+import { SectionCode } from '../sections/SectionCode';
 import { SectionP } from '../sections/SectionP';
 import { SectionSubheading } from '../sections/SectionSubheading';
 import { SectionTitle } from '../sections/SectionTitle';
@@ -14,8 +15,8 @@ export const PostRenderSection: React.FC<{
     case 'post-p':
       return <SectionP section={section} />;
 
-    // case 'post-code':
-    //   return <SectionCode section={section} />;
+    case 'post-code':
+      return <SectionCode section={section} />;
 
     case 'post-subheading':
       return <SectionSubheading section={section}></SectionSubheading>;

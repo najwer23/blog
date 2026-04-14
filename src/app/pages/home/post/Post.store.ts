@@ -10,6 +10,7 @@ type PostStore = {
   openSectionIdDialog: (id: number) => void;
   closeSectionIdDialog: () => void;
   addSectionTitle: () => void;
+  addSectionCode: () => void;
   addSectionSubheading: () => void;
   addSectionP: () => void;
   removeSection: (index: number) => void;
@@ -64,6 +65,21 @@ const usePostStoreBase = create<PostStore>()((set) => ({
             name: 'post-p',
             data: {
               text: 'Example',
+            },
+          },
+        ],
+      },
+    })),
+  addSectionCode: () =>
+    set((state) => ({
+      postJson: {
+        ...state.postJson,
+        sections: [
+          ...state.postJson.sections,
+          {
+            name: 'post-code',
+            data: {
+              code: 'const users = [\n  { name: \"Anna\", age: 32 },\n  { name: \"Bob\", age: 28 },\n  { name: \"Cara\", age: 40 },\n];\n\nconst byAge = users.sort((a, b) => a.age - b.age);\n',
             },
           },
         ],

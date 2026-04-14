@@ -65,7 +65,7 @@ export const BlogDialogEdit: React.FC<{}> = () => {
   return (
     <>
       <Dialog widthMax={'900px'} open={sectionIdDialogOpen} onCancel={() => closeSectionIdDialog()}>
-        <Grid layout="container" padding="0px 30px 30px 30px" margin="auto" widthMax={'900px'} widthMin={'800px'}>
+        <Grid layout="container" padding="0px 30px 30px 30px" margin="auto" widthMin={'min(800px, 100vw)'}>
           <TextBox mobileSize={20} desktopSize={20} margin={'0 0 30px'} tag="h3" fontWeight={700}>
             Editing section {sectionId}
           </TextBox>
@@ -115,6 +115,19 @@ export const BlogDialogEdit: React.FC<{}> = () => {
                   defaultValue={section?.data.text}
                   validatorOptions={[{ type: 'empty' }]}
                   placeholder="Place for your subheading"
+                />
+              </>
+            )}
+
+            {section?.name === 'post-code' && (
+              <>
+                <Input
+                  kind="textarea"
+                  label="Code"
+                  name="code"
+                  defaultValue={section?.data.code}
+                  validatorOptions={[{ type: 'empty' }]}
+                  placeholder="Place for your paragraph"
                 />
               </>
             )}

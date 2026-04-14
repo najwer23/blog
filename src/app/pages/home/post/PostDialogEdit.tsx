@@ -13,6 +13,7 @@ export const BlogDialogEdit: React.FC<{}> = () => {
   const sectionIdDialogOpen = usePostStore.use.sectionIdDialogOpen();
   const closeSectionIdDialog = usePostStore.use.closeSectionIdDialog();
   const updateSectionData = usePostStore.use.updateSectionData();
+  const updateSectionDataAndTitle = usePostStore.use.updateSectionDataAndTitle();
   const postJson = usePostStore.use.postJson();
 
   const section = postJson.sections[sectionId];
@@ -26,7 +27,7 @@ export const BlogDialogEdit: React.FC<{}> = () => {
           title: form.title.value,
           date: form.date.value.split('-').reverse().join('/'),
         };
-        updateSectionData(sectionId, section.name, data);
+        updateSectionDataAndTitle(sectionId, section.name, data);
         break;
       }
 
@@ -46,17 +47,6 @@ export const BlogDialogEdit: React.FC<{}> = () => {
         updateSectionData(sectionId, section.name, data);
         break;
       }
-
-      case 'quote': {
-        const data = {
-          text: form.text.value,
-        };
-        updateSectionData(sectionId, section.name, data);
-        break;
-      }
-
-      case 'group':
-        return;
     }
 
     closeSectionIdDialog();

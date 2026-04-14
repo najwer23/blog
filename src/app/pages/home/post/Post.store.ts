@@ -16,6 +16,7 @@ type PostStore = {
   removeSection: (index: number) => void;
   updateSection: (updatedSection: PostJson['sections'][number]) => void;
   updateSectionData: <K extends PostSection['name']>(index: number, name: K, data: PostSectionData<K>) => void;
+  updateSectionDataAndTitle: (index: number, name: 'post-title', data: PostSectionData<'post-title'>) => void;
 };
 
 const usePostStoreBase = create<PostStore>()((set) => ({
@@ -43,6 +44,7 @@ const usePostStoreBase = create<PostStore>()((set) => ({
     set((state) => ({
       postJson: {
         ...state.postJson,
+        title: '',
         sections: [
           ...state.postJson.sections,
           {
@@ -120,6 +122,17 @@ const usePostStoreBase = create<PostStore>()((set) => ({
     set((state) => ({
       postJson: {
         ...state.postJson,
+        sections: state.postJson.sections.map((section, i) =>
+          i === index && section.name === name ? ({ ...section, data } as PostSection) : section,
+        ),
+      },
+    })),
+  updateSectionDataAndTitle: (index: number, name: 'post-title', data: PostSectionData<'post-title'>) =>
+    set((state) => ({
+      postJson: {
+        ...state.postJson,
+        id: data.title.match(/#(\d+)/)?.[1] ?? '',
+        title: data.title,
         sections: state.postJson.sections.map((section, i) =>
           i === index && section.name === name ? ({ ...section, data } as PostSection) : section,
         ),

@@ -40,8 +40,8 @@ export const Home = () => {
     <Grid layout="container" widthMax="1600px" padding="40px 20px 40px 20px" margin="auto">
       <BlogDialogEdit />
 
-      <Grid layout="flex" justifyContent="flex-start" alignItems="flex-start" margin={'0 0 100px'}>
-        <Grid layout="container" widthMax="450px" widthMin="450px" margin={0}>
+      <Grid layout="flex" justifyContent="flex-start" alignItems="flex-start" margin={'0 0 100px'} flexWrap="wrap">
+        <Grid layout="container" widthMax="450px" widthMin={'min(450px, 100vw)'} margin="0 0 40px">
           <TextBox mobileSize={20} desktopSize={20} margin="0 0 40px">
             Sections
           </TextBox>
@@ -76,7 +76,7 @@ export const Home = () => {
           </Button>
         </Grid>
 
-        <Grid layout="container" widthMax="1100px" widthMin="1100px" margin={0}>
+        <Grid layout="container" widthMax="1100px" widthMin={'min(1100px, calc(100vw - 40px)'} margin={0}>
           <TextBox mobileSize={20} desktopSize={20} margin="0 0 40px">
             Post
           </TextBox>
@@ -86,6 +86,7 @@ export const Home = () => {
               <Grid
                 key={index}
                 layout="flex"
+                flexWrap="nowrap"
                 justifyContent="flexstart"
                 alignItems="flexstart"
                 widthMax={'1190px'}
@@ -115,9 +116,9 @@ export const Home = () => {
                   </Grid>
                 </Grid>
 
-                <div style={{ width: '100%' }}>
+                <Grid layout="container" widthMax="1600px" widthMin={'min(900px, calc(100vw - 240px))'} margin="0">
                   <PostRenderSection section={section} id={1} />
-                </div>
+                </Grid>
               </Grid>
             ))}
           </Grid>
@@ -126,7 +127,7 @@ export const Home = () => {
 
       <hr></hr>
 
-      <Grid layout="container" widthMax="1600px" widthMin="500px" margin="40px 0 100px 0">
+      <Grid layout="container" widthMax="1600px" widthMin={'min(500px, calc(100vw - 40px))'} margin="40px 0 50px 0">
         <TextBox mobileSize={20} desktopSize={20} margin="0 0 40px">
           JSON
         </TextBox>

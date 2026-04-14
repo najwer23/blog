@@ -2,6 +2,10 @@
   --surface: #eee;
 }
 
+html {
+  overscroll-behavior: none;
+}
+
 body {
   background-color: var(--surface);
   margin: 0;

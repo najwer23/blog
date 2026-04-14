@@ -13,7 +13,7 @@ import { PostRenderSection } from './post/PostRenderSection';
 const STORAGE_KEY = 'blog-post-creator';
 
 export const Home = () => {
-  useDocumentTitle('Home | Mariusz Najwer');
+  useDocumentTitle('Blog Post Creator | Mariusz Najwer');
 
   const postJson = usePostStore.use.postJson();
   const setPostJson = usePostStore.use.setPostJson();

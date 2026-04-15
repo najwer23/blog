@@ -6,7 +6,8 @@ import { Grid } from 'najwer23morsels/lib/grid';
 import { TextBox } from 'najwer23morsels/lib/textbox';
 import { useEffect, useRef, useState } from 'react';
 import { usePostStore } from './post/Post.store';
-import { BlogDialogEdit } from './post/PostDialogEdit';
+import { PostDialogEdit } from './post/PostDialogEdit';
+import { PostDialogImport } from './post/PostDialogImport';
 import { PostRenderSection } from './post/PostRenderSection';
 
 const STORAGE_KEY = 'blog-post-creator';
@@ -22,6 +23,7 @@ export const Home = () => {
   const removeSection = usePostStore.use.removeSection();
   const openSectionIdDialog = usePostStore.use.openSectionIdDialog();
   const addSectionCode = usePostStore.use.addSectionCode();
+  const openImportDialog = usePostStore.use.openImportDialog();
 
   const dragItemIndex = useRef<number | null>(null);
   const dragOverIndex = useRef<number | null>(null);
@@ -64,11 +66,20 @@ export const Home = () => {
     setIsDragging(false);
   };
 
-  console.log(postJson.sections.filter((x) => x.name == 'post-title').length > 0);
-
   return (
     <Grid layout="container" widthMax="1600px" padding="40px 20px 40px 20px" margin="auto">
-      <BlogDialogEdit />
+      <PostDialogImport />
+      <PostDialogEdit />
+
+      <TextBox mobileSize={20} desktopSize={20} margin="0 0 20px">
+        Import
+      </TextBox>
+
+      <Button height="40px" width="120px" backgroundColor="orangered" onClick={openImportDialog} margin={'20px 0 40px'}>
+        <TextBox mobileSize={18} desktopSize={18} color="white">
+          JSON
+        </TextBox>
+      </Button>
 
       <Grid layout="flex" justifyContent="flex-start" alignItems="flex-start" margin={'0 0 100px'} flexWrap="wrap">
         <Grid layout="container" widthMax="450px" widthMin={'min(450px, 100vw)'} margin="0 0 40px">

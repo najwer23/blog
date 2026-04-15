@@ -7,9 +7,12 @@ type PostStore = {
   postJson: PostJson;
   sectionId: number;
   sectionIdDialogOpen: boolean;
+  importDialogOpen: boolean;
   setPostJson: (updater: (prev: PostJson) => PostJson) => void;
   openSectionIdDialog: (id: number) => void;
+  openImportDialog: () => void;
   closeSectionIdDialog: () => void;
+  closeImportDialog: () => void;
   addSectionTitle: () => void;
   addSectionCode: () => void;
   addSectionSubheading: () => void;
@@ -51,10 +54,15 @@ const usePostStoreBase = create<PostStore>()((set) => ({
   postJson: loadInitialPostJson(),
   sectionId: 0,
   sectionIdDialogOpen: false,
+  importDialogOpen: false,
   setPostJson: (updater) =>
     set((state) => ({
       postJson: updater(state.postJson),
     })),
+  openImportDialog: () =>
+    set({
+      importDialogOpen: true,
+    }),
   openSectionIdDialog: (id) =>
     set({
       sectionId: id,
@@ -63,6 +71,10 @@ const usePostStoreBase = create<PostStore>()((set) => ({
   closeSectionIdDialog: () =>
     set({
       sectionIdDialogOpen: false,
+    }),
+  closeImportDialog: () =>
+    set({
+      importDialogOpen: false,
     }),
   addSectionTitle: () =>
     set((state) => ({

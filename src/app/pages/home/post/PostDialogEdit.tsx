@@ -8,7 +8,7 @@ import { Input } from 'najwer23morsels/lib/input';
 import { TextBox } from 'najwer23morsels/lib/textbox';
 import { usePostStore } from './Post.store';
 
-export const BlogDialogEdit: React.FC<{}> = () => {
+export const PostDialogEdit: React.FC<{}> = () => {
   const sectionId = usePostStore.use.sectionId();
   const sectionIdDialogOpen = usePostStore.use.sectionIdDialogOpen();
   const closeSectionIdDialog = usePostStore.use.closeSectionIdDialog();

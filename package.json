@@ -26,7 +26,7 @@
     "sort": "npx sort-package-json"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.11",
+    "@biomejs/biome": "2.4.12",
     "@tanstack/react-query": "^5.99.0",
     "@tanstack/react-query-persist-client": "^5.99.0",
     "@types/node": "^25.6.0",
@@ -34,7 +34,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "gh-pages": "^6.3.0",
-    "najwer23morsels": "^0.22.12",
+    "najwer23morsels": "^0.22.13",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.14.1",

@@ -140,15 +140,6 @@ export const Home = () => {
                 widthMax={'1190px'}
                 gap={{ col: '10px', row: '20px' }}
                 margin={0}
-                draggable
-                onDragStart={() => handleDragStart(index)}
-                onDragEnter={() => handleDragEnter(index)}
-                onDragEnd={handleDragEnd}
-                onDragOver={(e) => e.preventDefault()}
-                style={{
-                  opacity: isDragging && dragItemIndex.current === index ? 0.4 : 1,
-                  cursor: 'move',
-                }}
               >
                 <Grid layout="container" widthMin="200px" widthMax={'200px'} margin={0}>
                   <TextBox mobileSize={15} desktopSize={15} margin={'0 0 5px'}>
@@ -168,6 +159,24 @@ export const Home = () => {
                     <Button width="40px" height="25px" backgroundColor="#ff3333" onClick={() => removeSection(index)}>
                       <TextBox mobileSize={12} desktopSize={12} color="white">
                         Del
+                      </TextBox>
+                    </Button>
+                    <Button
+                      width="40px"
+                      height="25px"
+                      backgroundColor="purple"
+                      draggable
+                      onDragStart={() => handleDragStart(index)}
+                      onDragEnter={() => handleDragEnter(index)}
+                      onDragEnd={handleDragEnd}
+                      onDragOver={(e) => e.preventDefault()}
+                      style={{
+                        opacity: isDragging && dragItemIndex.current === index ? 0.4 : 1,
+                        cursor: 'move',
+                      }}
+                    >
+                      <TextBox mobileSize={12} desktopSize={12} color="white">
+                        Drag
                       </TextBox>
                     </Button>
                   </Grid>

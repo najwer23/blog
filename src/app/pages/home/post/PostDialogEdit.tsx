@@ -76,7 +76,7 @@ export const PostDialogEdit: React.FC<{}> = () => {
               defaultValue={String(sectionId)}
               validatorOptions={[
                 { type: 'empty' },
-                { type: 'numberInRange', options: { min: 0, max: postJson.sections.length - 1 } },
+                { type: 'numberInRange', options: { min: 0, max: postJson?.sections?.length - 1 } },
               ]}
               placeholder="New Index"
             />

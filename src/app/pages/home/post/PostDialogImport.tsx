@@ -1,11 +1,11 @@
 import { SyntaxHighlight } from '@app/syntaxhighlight/SyntaxHighlight';
-import { Button } from 'najwer23morsels/lib/button';
-import { Dialog } from 'najwer23morsels/lib/dialog';
-import { Form } from 'najwer23morsels/lib/form';
-import type { FormType } from 'najwer23morsels/lib/form/Form';
-import { Grid } from 'najwer23morsels/lib/grid';
-import { Input } from 'najwer23morsels/lib/input';
-import { TextBox } from 'najwer23morsels/lib/textbox';
+import { Button } from 'najwer23morsels/lib/Button';
+import { Dialog } from 'najwer23morsels/lib/Dialog';
+import type { FormType } from 'najwer23morsels/lib/Form';
+import { Form } from 'najwer23morsels/lib/Form';
+import { Grid } from 'najwer23morsels/lib/Grid';
+import { Input } from 'najwer23morsels/lib/Input';
+import { TextBox } from 'najwer23morsels/lib/TextBox';
 import { useEffect, useState } from 'react';
 import { usePostStore } from './Post.store';
 import type { PostJson } from './Post.types';

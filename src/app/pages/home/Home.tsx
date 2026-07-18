@@ -1,9 +1,9 @@
 import { useDocumentTitle } from '@app/hooks/useDocumentTitle';
 import { storageItemSet } from '@app/storage/storageItemSet';
 import { SyntaxHighlight } from '@app/syntaxhighlight/SyntaxHighlight';
-import { Button } from 'najwer23morsels/lib/button';
-import { Grid } from 'najwer23morsels/lib/grid';
-import { TextBox } from 'najwer23morsels/lib/textbox';
+import { Button } from 'najwer23morsels/lib/Button';
+import { Grid } from 'najwer23morsels/lib/Grid';
+import { TextBox } from 'najwer23morsels/lib/TextBox';
 import { useEffect, useRef, useState } from 'react';
 import { usePostStore } from './post/Post.store';
 import { PostDialogEdit } from './post/PostDialogEdit';
@@ -166,28 +166,28 @@ export const Home = () => {
                 margin={0}
               >
                 <Grid layout="container" widthMin="200px" widthMax={'200px'} margin={0}>
-                  <TextBox mobileSize={15} desktopSize={15} margin={'0 0 5px'}>
+                  <TextBox mobileSize={8} desktopSize={8} margin={'3px 0 0px'}>
                     {index} {section.name}
                   </TextBox>
                   <Grid layout="flex" justifyContent="flex-start" margin={0} gap={{ col: '10px', row: '20px' }}>
                     <Button
                       width="40px"
-                      height="25px"
+                      height="20px"
                       backgroundColor="#4BB543"
                       onClick={() => openSectionIdDialog(index)}
                     >
-                      <TextBox mobileSize={12} desktopSize={12} color="white">
+                      <TextBox mobileSize={10} desktopSize={10} color="white">
                         Edit
                       </TextBox>
                     </Button>
-                    <Button width="40px" height="25px" backgroundColor="#ff3333" onClick={() => removeSection(index)}>
-                      <TextBox mobileSize={12} desktopSize={12} color="white">
+                    <Button width="40px" height="20px" backgroundColor="#ff3333" onClick={() => removeSection(index)}>
+                      <TextBox mobileSize={10} desktopSize={10} color="white">
                         Del
                       </TextBox>
                     </Button>
                     <Button
                       width="40px"
-                      height="25px"
+                      height="20px"
                       backgroundColor="purple"
                       draggable
                       onDragStart={() => handleDragStart(index)}
@@ -199,7 +199,7 @@ export const Home = () => {
                         cursor: 'move',
                       }}
                     >
-                      <TextBox mobileSize={12} desktopSize={12} color="white">
+                      <TextBox mobileSize={10} desktopSize={10} color="white">
                         Drag
                       </TextBox>
                     </Button>

@@ -19,7 +19,7 @@
       background: white !important;
     }
 
-    .copyButtonSticky {
+    .buttonCopySticky {
       padding-top: 20px;
       width: calc(100% - 20px);
       position: sticky;

@@ -1,4 +1,4 @@
-import { TextBox } from 'najwer23morsels/lib/textbox';
+import { Typography } from 'najwer23morsels/lib/Typography';
 import type { PostSection } from '../post/Post.types';
 
 export const SectionP: React.FC<{
@@ -6,9 +6,9 @@ export const SectionP: React.FC<{
 }> = ({ section }) => {
   return (
     <>
-      <TextBox mobileSize={16} desktopSize={18} tag="p" margin={'30px 0 0'}>
+      <Typography appearance="light" variant="body">
         {section.data.text}
-      </TextBox>
+      </Typography>
     </>
   );
 };
